@@ -8,7 +8,10 @@ def packet_listener(interface):
 
 #Analyze the packets
 def packet_analyzer(packet):
-    packet.show()
+    #packet.show()
 
+    if packet.haslayer(http.HTTPRequest):
+        if packet.haslayer(scapy.Raw):
+            print(packet[scapy.Raw].load)
 
 packet_listener("eth0")
